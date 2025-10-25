@@ -1,0 +1,130 @@
+<h2 class="title_form">Listado de Escuela de Conducción</h2>
+<div>
+  <div [formGroup]="escuelaConduccionListadoForm">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <div class="form-group row">
+            <label for="ruc" class="col-sm-3 col-form-label">Departamento</label>
+            <div class="col-sm-9">
+                <select class="form-control" formControlName="departamento">
+                    <option value="">seleccione</option>
+                        @for (departamento of departamentos; track $index) {
+                        <option value="{{departamento.id}}" >{{departamento.nombre}}</option>
+                        }
+                </select>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group row">
+            <label for="ruc" class="col-sm-3 col-form-label">Provincia</label>
+            <div class="col-sm-9">
+                <select class="form-control" formControlName="provincia">
+                    <option value="">seleccione</option>
+                        @for (provincia of provincias; track $index) {
+                        <option value="{{provincia.id}}" >{{provincia.nombre}}</option>
+                        }
+                </select>
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group row">
+            <label for="ruc" class="col-sm-3 col-form-label">Distrito</label>
+            <div class="col-sm-9">
+                <select class="form-control" formControlName="distrito">
+                    <option value="">seleccione</option>
+                        @for (distrito of distritos; track $index) {
+                        <option value="{{distrito.id}}" >{{distrito.nombre}}</option>
+                        }
+                </select>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-sm-9">
+        <div class="form-group row">
+
+          <label for="ruc" class="col-sm-3 col-form-label">
+            Criterio de búsqueda</label>
+          <div class="col-sm-9">
+          <input
+            type="text"
+            formControlName="ruc"
+            class="form-control"
+            id="ruc"
+            placeholder="Ingrese RUC"
+          />
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-3" style="text-align: right">
+        <button type="button" class="btn btn-primary mr-2" (click)="buscar()">
+          <i class="bi bi-binoculars"></i> Buscar
+        </button>
+        <button type="button" class="btn btn-info mr-2" (click)="limpiar()">
+          Limpiar
+        </button>
+        <button type="button" class="btn btn-secondary mr-2" (click)="nuevo()">
+          Nuevo
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table">
+        <thead class="thead-dark">
+          <th scope="col">Id</th>
+          <th scope="col">RUC</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Dirección / Ubicación</th>
+          <th scope="col">Correo electrónico</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Estado</th>
+          <th scope="col" style="text-align: center;">Acciones</th>
+        </thead>
+        <tbody>
+          @for (escuelaConduccion of itemsPage ; track $index) {
+          <tr>
+            <td>{{ escuelaConduccion.id }}</td>
+            <td>{{ escuelaConduccion.ruc }}</td>
+            <td>{{ escuelaConduccion.nombre | uppercase }}</td>
+            <td>{{ escuelaConduccion.direccion }} / {{ escuelaConduccion.ubigeo.nombreDepartamento }} {{ escuelaConduccion.ubigeo.nombreProvincia }} {{ escuelaConduccion.ubigeo.nombreDistrito }}</td>
+            <td>{{ escuelaConduccion.correo }}</td>
+            <td>{{ escuelaConduccion.telefono }}</td>
+            <td>{{ escuelaConduccion.estado}}</td>
+            <td style="text-align: center">
+              <button
+                type="button"
+                class="btn btn-outline-primary mr-2"
+                (click)="edit(escuelaConduccion)"
+                title="Permite modificar una Escuela"
+              >
+                Edit
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger mr-2"
+                (click)="delete(escuelaConduccion)"
+                title="Elimina la escuela seleccionada"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+  <div class="col-xs-12 col-12">
+    <pagination [totalItems]="totalItems" (pageChanged)="pageChanged($event)" [maxSize]="MAX_SIZE"></pagination>
+  </div>
+</div>
+
+</div>

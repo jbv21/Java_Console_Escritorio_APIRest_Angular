@@ -1,0 +1,138 @@
+<H1 class="title_form">Registro de Escuela Conducción</H1>
+<div [formGroup]="escuelaConduccionForm"  >
+  <div class="form-group row">
+    <label for="ruc" class="col-sm-2 col-form-label">RUC</label>
+    <div class="col-sm-10">
+      <input type="text" formControlName="ruc" class="form-control" id="ruc" placeholder="Número de RUC"
+      [ngClass]="{'is-invalid': fe['ruc'].invalid && (fe['ruc'].touched || submitted)}"
+      >
+      @if (fe['ruc'].hasError('required')) {
+        <div class="invalid-feedback">El RUC es requerido.</div>
+      }
+      @if (fe['ruc'].hasError('minlength') || fe['ruc'].hasError('maxlength')) {
+        <div class="invalid-feedback">El  N° de RUC debe tener mínimo y máximo de {{ fe['ruc'].errors?.['maxlength']?.requiredLength }} dígitos.</div>
+      }
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="nombre" class="col-sm-2 col-form-label">NOMBRE</label>
+    <div class="col-sm-10">
+      <input type="text" formControlName="nombre" class="form-control" id="nombre" placeholder="Nombre de Escuela"
+      [ngClass]="{'is-invalid': fe['nombre'].invalid && (fe['nombre'].touched || submitted)}"
+      >
+      @if (fe['nombre'].hasError('required')) {
+        <div class="invalid-feedback">El Nombre es requerido.</div>
+      }
+      @if (fe['nombre'].hasError('minlength')) {
+        <div class="invalid-feedback">El Nombre debe tener mínimo {{ fe['nombre'].errors?.['minlength']?.requiredLength }} caracteres.</div>
+      }
+      @if (fe['nombre'].hasError('maxlength')) {
+        <div class="invalid-feedback">El Nombre debe tener como máximo {{ fe['nombre'].errors?.['maxlength']?.requiredLength }} caracteres.</div>
+      }
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="correo" class="col-sm-2 col-form-label">CORREO</label>
+    <div class="col-sm-10">
+      <input type="text" formControlName="correo" class="form-control" id="correo" placeholder="Correo"
+      [ngClass]="{'is-invalid': fe['correo'].invalid && (fe['correo'].touched || submitted)}">
+       @if (fe['correo'].hasError('required')) {
+        <div class="invalid-feedback">El correo es requerido.</div>
+      }
+      @if (fe['correo'].hasError('email')) {
+        <div class="invalid-feedback">Ingresar un correo válido.</div>
+      }
+
+    </div>
+  </div>
+    <div class="form-group row">
+    <label for="telefono" class="col-sm-2 col-form-label">TELÉFONO</label>
+    <div class="col-sm-10">
+      <input type="text" formControlName="telefono" class="form-control" id="telefono" placeholder="Teléfono"
+      [ngClass]="{'is-invalid': fe['telefono'].invalid && (fe['telefono'].touched || submitted)}"
+      >
+       @if (fe['telefono'].hasError('required')) {
+        <div class="invalid-feedback">El teléfono es requerido.</div>
+      }
+      @if (fe['telefono'].hasError('pattern')) {
+        <div class="invalid-feedback">Ingresar un teléfono válido.</div>
+      }
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-2">DEPARTAMENTO</div>
+    <div class="col-sm-10">
+        <select class="form-select" formControlName="idDepartamento">
+        <option >seleccione</option>
+        @for (departamento of departamentos; track $index) {
+          <option value="{{departamento.id}}" >{{departamento.nombre}}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+   <div class="form-group row">
+    <div class="col-sm-2">PROVINCIA</div>
+    <div class="col-sm-10">
+        <select class="form-select" formControlName="idProvincia">
+        <option >seleccione</option>
+        @for (provincia of provincias; track $index) {
+          <option value="{{provincia.id}}" >{{provincia.nombre}}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+   <div class="form-group row">
+    <div class="col-sm-2">DISTRITO</div>
+    <div class="col-sm-10">
+        <select class="form-select" formControlName="idDistrito">
+        <option >seleccione</option>
+        @for (distrito of distritos; track $index) {
+          <option value="{{distrito.id}}" >{{distrito.nombre}}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+ <div class="form-group row">
+    <label for="direccion" class="col-sm-2 col-form-label">DIRECCIÓN</label>
+    <div class="col-sm-10">
+      <input type="text" formControlName="direccion" class="form-control" id="direccion" placeholder="Dirección"
+      [ngClass]="{'is-invalid': fe['direccion'].invalid && (fe['direccion'].touched || submitted)}"
+      >
+       @if (fe['direccion'].hasError('required')) {
+        <div class="invalid-feedback">La dirección es requerido.</div>
+      }
+      @if (fe['direccion'].hasError('minlength')) {
+        <div class="invalid-feedback">la dirección debe tener mínimo {{ fe['direccion'].errors?.['minlength']?.requiredLength }} caracteres.</div>
+      }
+      @if (fe['direccion'].hasError('maxlength')) {
+        <div class="invalid-feedback">la dirección debe tener como máximo {{ fe['direccion'].errors?.['maxlength']?.requiredLength }} caracteres.</div>
+      }
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-2">ESTADO</div>
+    <div class="col-sm-10">
+        <select class="form-select" formControlName="estado">
+            <option >seleccione</option>
+            <option value="ACTIVO">ACTIVO</option>
+            <option value="INACTIVO">INACTIVO</option>
+            <option value="SUSPENDIDO">SUSPENDIDO</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+     <button type="button" class="btn btn-primary mr-2" (click)="save()">Save</button>
+     <button type="button" class="btn btn-success mr-2">Clean</button>
+     <button type="button" class="btn btn-secondary mr-2" (click)="cancel()">Cancel</button>
+
+    </div>
+  </div>
+</div>

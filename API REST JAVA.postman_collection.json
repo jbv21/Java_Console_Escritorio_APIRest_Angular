@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "5a9bc62c-92c0-4527-8a1a-d77e87d54e4e",
+		"name": "API REST JAVA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9156376"
+	},
+	"item": [
+		{
+			"name": "Ubicacion / Departamento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/ubicacion/departamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ubicacion",
+						"departamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ubicacion / Provincia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/ubicacion/provincias/:idDepartamento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ubicacion",
+						"provincias",
+						":idDepartamento"
+					],
+					"variable": [
+						{
+							"key": "idDepartamento",
+							"value": "02"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ubicacion / Distrito",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/ubicacion/distritos/:idDepartamento/:idProvincia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ubicacion",
+						"distritos",
+						":idDepartamento",
+						":idProvincia"
+					],
+					"variable": [
+						{
+							"key": "idDepartamento",
+							"value": "02"
+						},
+						{
+							"key": "idProvincia",
+							"value": "03"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Escuela /  findAllCustomPaging",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/escuelas/paging",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"escuelas",
+						"paging"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Escuela /  findAllCustom",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/escuelas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"escuelas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Escuela /  findById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/escuelas/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"escuelas",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Escuela /  Save",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"ruc\": \"10451487721\",\r\n        \"nombre\": \"TEST 1\",\r\n        \"direccion\": \"TEST 2\",\r\n        \"estado\": \"ACTIVO\",\r\n        \"telefono\": \"8888888\",\r\n        \"correo\": \"23TEST@HOTMAIL.COM\",\r\n        \"ubigeo\": {\r\n            \"id\": {\r\n                \"idDepartamento\": \"02\",\r\n                \"idProvincia\": \"03\",\r\n                \"idDistrito\": \"02\"\r\n            }\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/escuelas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"escuelas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Escuela /  Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"ruc\": \"10451487725\",\r\n        \"nombre\": \"TEST 22\",\r\n        \"direccion\": \"TEST 33\",\r\n        \"estado\": \"ACTIVO\",\r\n        \"telefono\": \"8888888\",\r\n        \"correo\": \"23TEST@HOTMAIL.COM\",\r\n        \"ubigeo\": {\r\n            \"id\": {\r\n                \"idDepartamento\": \"02\",\r\n                \"idProvincia\": \"03\",\r\n                \"idDistrito\": \"02\"\r\n            }\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/escuelas/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"escuelas",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Escuela /  Update Estado",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"ruc\": \"10451487725\",\r\n        \"nombre\": \"TEST 22\",\r\n        \"direccion\": \"TEST 33\",\r\n        \"estado\": \"ACTIVO\",\r\n        \"telefono\": \"8888888\",\r\n        \"correo\": \"23TEST@HOTMAIL.COM\",\r\n        \"ubigeo\": {\r\n            \"id\": {\r\n                \"idDepartamento\": \"02\",\r\n                \"idProvincia\": \"03\",\r\n                \"idDistrito\": \"02\"\r\n            }\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/escuelas/:id/:estado",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"escuelas",
+						":id",
+						":estado"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						},
+						{
+							"key": "estado",
+							"value": "SUSPENDIDO"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Escuela /  Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"ruc\": \"10451487725\",\r\n        \"nombre\": \"TEST 22\",\r\n        \"direccion\": \"TEST 33\",\r\n        \"estado\": \"ACTIVO\",\r\n        \"telefono\": \"8888888\",\r\n        \"correo\": \"23TEST@HOTMAIL.COM\",\r\n        \"ubigeo\": {\r\n            \"id\": {\r\n                \"idDepartamento\": \"02\",\r\n                \"idProvincia\": \"03\",\r\n                \"idDistrito\": \"02\"\r\n            }\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/escuelas/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"escuelas",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
